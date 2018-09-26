@@ -1,0 +1,33 @@
+.active {
+    color:#ffffff !important;
+    border-bottom: 2px solid #fff;
+}
+
+.card-title{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.project-detail-sb {
+    border-right: 1px solid #e9ecef
+}
+
+.project-sidebar-block {
+    padding:10px 0px;
+}
+
+.project-sidebar-block h2 {
+    padding:10px 0px;
+    font-weight: bold;
+}
+
+
+.project-sidebar-links{
+    margin:10px 0px
+}
+
+
+.bc-item{
+    color:#007bff
+}
+

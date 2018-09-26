@@ -1,0 +1,29 @@
+<main role="main">
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="row">
+                {{#each projects}}
+                    <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="card-img-top" src="{{this.image}}"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <p class="card-title">{{this.name}}</p>
+                            <p class="card-text">{{this.shortDescription}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="/project/{{this.alias}}" class="btn btn-sm btn-outline-secondary"><i class="fas fa-info-circle"></i> details</a>
+                                    <a href="https://www.github.com/akhil028" class="btn btn-sm btn-outline-secondary"><i class="fab fa-github"></i>Github</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+</main>
