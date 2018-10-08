@@ -1,4 +1,4 @@
-const data = require('../seed-data')
+const data = require('../myData.json')
 
 function getProjects(alias) {
     if(alias) {
@@ -7,6 +7,17 @@ function getProjects(alias) {
         return data.myProjects[index];
     } else {
         return data.myProjects;
+    }
+}
+
+
+function getBlogs(alias) {
+    if(alias) {
+        var index = data.blogIndex[alias];
+        console.log(index);
+        return data.myBlog[index];
+    } else {
+        return data.myBlog;
     }
 }
 
@@ -40,13 +51,29 @@ module.exports.projectDetail = (req,res) => {
 
 
 module.exports.blogList = (req,res) => {
+    const random = Math.floor(Math.random() * data.myBlog.length)
     res.render('blog', {
         title:'Blogs',
         layout:'layout',
         navBlogs: true,
-        blogs:getBlog()
+        blogs:getBlogs(),
+        featuredBlog: getBlogs()[random]
     })
 }
+
+
+module.exports.blogDetail = (req,res) => {
+    let alias = req.params.alias;
+    res.render('blog-detail', {
+        title:'Blogs',
+        layout:'layout',
+        navBlogs: true,
+        blog: getBlogs(alias),
+        blogCategory:data.blogCategories
+    })
+}
+
+
 
 module.exports.signin = (req,res) => {
     res.render('signin', {
@@ -94,6 +121,8 @@ module.exports.doSignup = (req,res) => {
 }
 
 
+
+
 module.exports.doSignin = (req,res) => {
     let datas = req.body;
     let email = req.body.email
@@ -124,14 +153,58 @@ module.exports.doSignin = (req,res) => {
 }
 
 
-module.exports.dashboard = (req,res) => {
-    res.render('dashboard', {
-        title:'Dashboard',
-        layout:'layout-dashboard'
+module.exports.admin = (req,res) => {
+    res.render('admin', {
+        title:'admin',
+        layout:'layout-admin'
+    })
+}
+
+
+module.exports.resume = (req,res) => {
+    res.redirect('/Akhil2018-converted.pdf')
+}
+
+
+module.exports.contact = (req,res) => {
+    res.render('contact', {
+        title:'Contact',
+        layout:'layout'
     })
 }
 
 
 
 
+module.exports.doContact = (req,res) => {
+    let dat = req.body;
+    let email = req.body.email
+    console.log(JSON.stringify(dat))
+    req.checkBody('email', 'Please enter the email').notEmpty().isEmail().withMessage('Email not correct')
 
+    let error = req.validationErrors();
+
+    if(error && error.length > 0) {
+        let messages = [];
+
+        error.forEach(error => {
+            messages.push(error.msg)
+        });
+        res.render('contact', {
+            title:'contact',
+            layout:'layout',
+            errors: messages
+        })
+    } else {
+        data.users.push(dat) 
+        res.send('Got it')
+    }
+}
+
+
+module.exports.about = (req,res) => {
+    res.render('about', {
+        title:'About',
+        layout:'layout'
+    })
+}

@@ -40,7 +40,7 @@ a{
 
 /* 3. Specific */
 .wallpaper {
-    background-image: url("../image/background.jpg");
+    background-image: url("/images/mountains.jpg");
     background-position: center;
     background-size: cover;
     opacity: 0.2;
