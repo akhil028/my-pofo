@@ -24,10 +24,10 @@ router.get('/', (req, res) => {
 })
 
 
-router.get((req,res) => {
+router.get('/:alias', (req,res) => {
     var alias = req.params.alias;
     res.render('project-detail', {
-        title:'Details',
+        title:'Project Details',
         layout:'layout',
         project:getProjects(alias)
     })

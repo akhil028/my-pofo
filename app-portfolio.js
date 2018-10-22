@@ -8,10 +8,10 @@ var session = require('express-session');
 var validator = require('express-validator')
 var appMiddle = require('./middlewares/app-middleware')
 var auth = require('./middlewares/auth')
-
 var index = require('./routes/index')
 var blog = require('./routes/blogs')
 var projects = require('./routes/projects')
+var admin = require('./routes/admin')
 
 
 
@@ -47,6 +47,8 @@ app.use(auth.authenticated);
 app.use('/', index)
 app.use('/blogs', blog)
 app.use('/projects', projects)
+app.use('/admin', auth.authenticate, admin)
+
 
 
 

@@ -1,5 +1,6 @@
 const data = require('../myData.json')
 const router = require('express').Router();
+const datass = require('../seed-data')
 
 
 router.get('/', (req, res) => {
@@ -97,7 +98,7 @@ router.post('/sign-in', (req, res) => {
     if (data.user.email == email && data.user.password == password) {
         req.session.isAuthenticated = true
         req.session.user = data.user;
-        req.locals.user = data.user;
+        res.locals.user = data.user;
         console.log('Hello')
         res.redirect('/admin')
     } else {
