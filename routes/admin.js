@@ -1,5 +1,7 @@
 const data = require('../myData.json');
 const router = require('express').Router();
+const fs = require('fs')
+const path = require('path')
 
 
 function getProjects(alias) {
@@ -48,6 +50,26 @@ router.get('/projects-create', (req,res) => {
     })
 })
 
+
+router.post('/projects-create', (req,res) => {
+    let inputData = req.body;
+    data.myProjects.push(inputData)
+    var jsonData = JSON.stringify(data);
+
+    let proIndex = Object.keys(inputData).length;
+    data.projectIndex[inputData.alias] = proIndex
+    
+    fs.writeFile('myData.json', jsonData, function(err) {
+        if(!err) {
+            res.send('Sucessfully data saved ')
+
+        }else {
+            Console.log(err)
+            res.send('Something went wrong')
+        }
+    })
+    
+})
 
 
 

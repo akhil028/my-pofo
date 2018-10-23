@@ -3,7 +3,7 @@
         <h1 class="h2">Projects</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-secondary">Create New</button>
+                <a href="/admin/projects-create" class="btn btn-sm btn-outline-secondary">Create New</a>
                 <button class="btn btn-sm btn-outline-secondary">Upload</button>
             </div>
         </div>
@@ -24,7 +24,7 @@
             <tbody>
                 {{#each projects}}
                     <tr>
-                        <td><img class="img-responsive" height="100" width="100" src="/images/Me.jpeg"/></td>
+                        <td><img class="img-responsive" height="100" width="100" src="/images/projects.png"/></td>
                         <td><a href="/admin/projects/{{this.alias}}">{{this.name}}</a></td>
                         <td>{{this.githubUrl}}</td>
                         <td></td>
